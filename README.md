@@ -6,7 +6,7 @@
 
 1. [Project Description](#projectdescription)
 2. [Files and data description](#files)
-3. [Installation] (#installation)
+3. [Installation](#installation)
 4. [Running Files](#running)
 5. [Results](#results)
 6. [Licensing, Authors, and Acknowledgements](#licensing)
