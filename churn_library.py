@@ -4,6 +4,8 @@
 Created on Wed Feb 14 13:31:48 2024
 
 author: moritz
+
+Udacity Nanodegree Project: Predict Customer Churn with Clean Code
 """
 # import libraries
 import os
@@ -58,14 +60,6 @@ def perform_eda(dataframe, directories):
     print(f'{dataframe.isnull().sum()}\n')  # get an idea of empty rows/columns
     # pritn statistical information of dataframe
     print(f'{dataframe.describe()}\n')
-
-    cat_columns = [
-    'Gender',
-    'Education_Level',
-    'Marital_Status',
-    'Income_Category',
-    'Card_Category'
-    ]
 
     quant_columns = [
         'Customer_Age',
@@ -311,9 +305,12 @@ def train_models(x_train, x_test, y_train, y_test, directories):
     # https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
     lrcl = LogisticRegression(solver='lbfgs', max_iter=3000)
 
+    # Changed in version 1.1:
+    # The default of max_features changed from "auto" to "sqrt".
+    # max_features = 'auto' is depreciated
     param_grid = {
         'n_estimators': [200, 500],
-        'max_features': ['auto', 'sqrt'],
+        'max_features': ['sqrt', 'sqrt'],
         'max_depth': [4, 5, 100],
         'criterion': ['gini', 'entropy']
     }
@@ -331,14 +328,11 @@ def train_models(x_train, x_test, y_train, y_test, directories):
 
     # plots
     plt.figure(figsize=(15, 8))
-    # ax = plt.gca()
-    # rfc_disp =
+
     RocCurveDisplay.from_estimator(
         cv_rfcl.best_estimator_, x_test, y_test, ax=plt.gca(), alpha=0.8)
-    # lrc_plot =
     RocCurveDisplay.from_estimator(
         lrcl, x_test, y_test, ax=plt.gca(), alpha=0.8)
-    # plt.show()
     plt.savefig(directories.results_dir.joinpath(
         'results.png').as_posix(), dpi=600)
     plt.close()
@@ -350,13 +344,12 @@ def train_models(x_train, x_test, y_train, y_test, directories):
 
     explainer = shap.TreeExplainer(cv_rfcl.best_estimator_)
     shap_values = explainer.shap_values(x_test)
-    shap.summary_plot(shap_values, x_test, plot_type="bar")
+    shap.summary_plot(shap_values, x_test, plot_type="bar", show=False)
     plt.savefig(directories.results_dir.joinpath(
         'summary.png').as_posix(), dpi=600)
     plt.close()
 
     plt.rc('figure', figsize=(5, 5))
-    # plt.text(0.01, 0.05, str(model.summary()), {'fontsize': 12}) old approach
     plt.text(0.01, 1.25, str('Random Forest Train'), {
              'fontsize': 10}, fontproperties='monospace')
 

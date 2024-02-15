@@ -1,2 +1,3 @@
-root - INFO - Testing import_data: SUCCESS
-root - INFO - Testing import_data: SUCCESS
+root - INFO -  About to start the tests 
+root - INFO - SUCCESS - Testing import_data
+root - INFO -  Done executing the tests 

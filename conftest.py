@@ -4,6 +4,9 @@
 Created on Thu Feb 15 07:36:41 2024
 
 @author: mo
+
+conftest.py file for pytest namespace definitions.
+works in combination with test_churn_library.py
 """
 import pytest
 
@@ -16,8 +19,8 @@ def pytest_configure():
     pytest.path = df_plugin()
     pytest.dirs = df_plugin()
 
-    pytest.train_X = df_plugin()
-    pytest.train_y = df_plugin()
-    pytest.test_X = df_plugin()
-    pytest.test_y = df_plugin()
+    pytest.x_train = df_plugin()
+    pytest.y_train = df_plugin()
+    pytest.x_test = df_plugin()
+    pytest.y_test = df_plugin()
 
