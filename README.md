@@ -66,8 +66,3 @@ These tests will log the performance and results in the logs-directory.
 Must give credit to Kaggle for the data. You can find the Licensing for the data and other descriptive information at the Kaggle link available
 [here](https://www.kaggle.com/datasets/sakshigoyal7/credit-card-customers/code).
 Additionally, the baseline code was provided by the Udacity-Team during the Nanodegree Machine Learning DevOps Engineer.
-
-```ruby
-   puts "Hello World"
-```
-
